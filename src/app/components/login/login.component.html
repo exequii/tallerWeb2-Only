@@ -1,16 +1,37 @@
 <form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  <!-- Email input -->
+  <div class="form-outline mb-4">
+    <input type="email" id="form2Example1" class="form-control" />
+    <label class="form-label" for="form2Example1">Email</label>
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
+
+  <!-- Password input -->
+  <div class="form-outline mb-4">
+    <input type="password" id="form2Example2" class="form-control" />
+    <label class="form-label" for="form2Example2">Contraseña</label>
   </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+  <!-- Submit button -->
+  <button type="button" class="btn btn-outline-dark btn-block mb-4">Iniciar sesión</button>
+
+  <!-- Register buttons -->
+  <div class="text-center">
+    <p>¿Aún no tienes cuenta? <a href="/register">Registrarme</a></p>
+    <p>O iniciar sesión con:</p>
+    <button type="button" class="btn btn-dark btn-floating mx-1">
+      <i class="fab fa-facebook-f"></i>
+    </button>
+
+    <button type="button" class="btn btn-dark btn-floating mx-1">
+      <i class="fab fa-google"></i>
+    </button>
+
+    <button type="button" class="btn btn-dark btn-floating mx-1">
+      <i class="fab fa-twitter"></i>
+    </button>
+
+    <button type="button" class="btn btn-dark btn-floating mx-1">
+      <i class="fab fa-github"></i>
+    </button>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
