@@ -1,6 +1,7 @@
 export interface Product {
 
   name: String;
+  codigo: String;
   price: Number;
   details: String;
   img: String;

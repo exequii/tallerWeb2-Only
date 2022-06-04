@@ -30,16 +30,20 @@
             <thead>
               <tr>
                 <th scope="col">Nombre</th>
+                <th scope="col">Codigo</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Oferta</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let product of carrito">
                   <td>{{product.name}}</td>
+                  <td>{{product.codigo}}</td>
                   <td>{{product.price}}</td>
                   <td *ngIf="product.ofert">SI</td>
                   <td *ngIf="!product.ofert">NO</td>
+                  <td><button class="btn btn-danger" (click)="sacarReloj(product.codigo)">X</button></td>
               </tr>
             </tbody>
           </table>
