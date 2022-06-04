@@ -24,6 +24,7 @@ export class ListaProductosComponent implements OnInit {
         img: "https://http2.mlstatic.com/D_NQ_NP_617858-MLA48328116515_112021-O.webp",
         ofert: true,
         desc: 10,
+        cantidad: 1,
       },
       {
         name: "Xiaomi Watch",
@@ -33,6 +34,7 @@ export class ListaProductosComponent implements OnInit {
         img: "https://http2.mlstatic.com/D_NQ_NP_617858-MLA48328116515_112021-O.webp",
         ofert: false,
         desc: 0,
+        cantidad: 1,
       }
     ]
   }

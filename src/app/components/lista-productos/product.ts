@@ -7,5 +7,5 @@ export interface Product {
   img: String;
   ofert: Boolean;
   desc: Number;
-
+  cantidad: Number;
 }

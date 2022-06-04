@@ -29,6 +29,7 @@
           <table class="table">
             <thead>
               <tr>
+                <th scope="col">Cantidad</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Codigo</th>
                 <th scope="col">Precio</th>
@@ -38,6 +39,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let product of carrito">
+                  <td>{{product.cantidad}}</td>
                   <td>{{product.name}}</td>
                   <td>{{product.codigo}}</td>
                   <td *ngIf="!product.ofert">${{product.price}}.-</td>
