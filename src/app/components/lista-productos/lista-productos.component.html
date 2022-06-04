@@ -29,16 +29,17 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">name</th>
-                <th scope="col">price</th>
-                <th scope="col">ofert</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Oferta</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let product of carrito">
                   <td>{{product.name}}</td>
                   <td>{{product.price}}</td>
-                  <td>{{product.ofert}}</td>
+                  <td *ngIf="product.ofert">SI</td>
+                  <td *ngIf="!product.ofert">NO</td>
               </tr>
             </tbody>
           </table>
