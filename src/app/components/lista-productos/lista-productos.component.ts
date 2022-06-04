@@ -32,13 +32,12 @@ export class ListaProductosComponent implements OnInit {
         details: "GPS incorporado. Notificaciones. Mas de 90 modos de deporte!.",
         img: "https://http2.mlstatic.com/D_NQ_NP_617858-MLA48328116515_112021-O.webp",
         ofert: false,
-        desc: 20,
+        desc: 0,
       }
     ]
   }
   agregarReloj(products : Product){
     this.carrito.push(products);
-    console.log(this.products);
   }
   sacarReloj(codigo : String){
     this.carrito.forEach((element,index)=> {

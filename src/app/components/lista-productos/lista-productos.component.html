@@ -40,7 +40,8 @@
               <tr *ngFor="let product of carrito">
                   <td>{{product.name}}</td>
                   <td>{{product.codigo}}</td>
-                  <td>{{product.price}}</td>
+                  <td *ngIf="!product.ofert">${{product.price}}.-</td>
+                  <td *ngIf="product.ofert">${{product.price - (product.price / product.desc)}}.-</td>
                   <td *ngIf="product.ofert">SI</td>
                   <td *ngIf="!product.ofert">NO</td>
                   <td><button class="btn btn-danger" (click)="sacarReloj(product.codigo)">X</button></td>
