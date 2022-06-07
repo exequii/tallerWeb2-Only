@@ -1,6 +1,9 @@
 import { Component, OnInit ,Input} from '@angular/core';
 import { Product } from './product';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { share, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-lista-productos',
@@ -11,32 +14,11 @@ export class ListaProductosComponent implements OnInit {
   products: Product[];
   carrito: Product[];
 
-  constructor(protected router:Router) { }
+  constructor(protected router:Router, protected httpClient: HttpClient) { }
 
   ngOnInit(): void {
+    this.traerProductos()
     this.carrito=[];
-    this.products = [
-      {
-        name: "Apple Watch",
-        codigo: "AAA111",
-        price: 40,
-        details: "El mejor reloj del mercado. Combina delicadez y tecnologia en tu mano siempre.",
-        img: "https://http2.mlstatic.com/D_NQ_NP_617858-MLA48328116515_112021-O.webp",
-        ofert: true,
-        desc: 10,
-        cantidad: 1,
-      },
-      {
-        name: "Xiaomi Watch",
-        codigo: "BBB111",
-        price: 80,
-        details: "GPS incorporado. Notificaciones. Mas de 90 modos de deporte!.",
-        img: "https://http2.mlstatic.com/D_NQ_NP_617858-MLA48328116515_112021-O.webp",
-        ofert: false,
-        desc: 0,
-        cantidad: 1,
-      }
-    ]
   }
   agregarReloj(products : Product){
     this.carrito.push(products);
@@ -46,5 +28,17 @@ export class ListaProductosComponent implements OnInit {
       if(element.codigo === codigo) this.carrito.splice(index,1)
       else return
     })
+  }
+  traerProductos(){
+    let res: Observable<Product[]> =
+    this.httpClient.get<Product[]>('http://localhost:3000/products')
+    .pipe(share());
+    res.subscribe(
+      value=> {
+          this.products = value
+              },
+      error => {
+        console.log('Ocurrio un error');
+      });
   }
 }

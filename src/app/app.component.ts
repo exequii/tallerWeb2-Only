@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit{
   title = 'tallerWeb2-Only';
 
-  constructor( protected router:Router){
+  constructor( protected router:Router, protected httpClient: HttpClient){
 
   }
 
