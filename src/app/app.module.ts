@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ListaProductosComponent } from './components/lista-productos/lista-productos.component';
 import { ProductoComponent } from './components/producto/producto.component';
 import { RegisterComponent } from './components/register/register.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { RegisterComponent } from './components/register/register.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule
   ],
