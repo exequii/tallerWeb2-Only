@@ -26,6 +26,7 @@
                     <div class="form-outline">
                       <p class="form-label">Email</p>
                       <input type="email" id="emailAddress" formControlName="email" class="form-control" placeholder="Ingrese su Correo"/>
+                      <p class="error" *ngIf="formSignup.controls['email'].hasError('email')">Formato Invalido.</p>
                     </div>
 
                   </div>
@@ -34,6 +35,7 @@
                     <div class="form-outline">
                       <p class="form-label">Numero de telefono</p>
                       <input type="tel" id="phoneNumber" formControlName="telefono" class="form-control" placeholder="Ingrese su Telefono"/>
+                      <small class="error" *ngIf="formSignup.controls['telefono'].hasError('pattern') && formSignup.controls['telefono'].dirty">El formato del telefono no es valido.</small>
                     </div>
 
                   </div>
@@ -45,6 +47,7 @@
                     <div class="form-outline">
                       <p class="form-label">Contraseña</p>
                       <input type="password" id="pass" formControlName="password" class="form-control" placeholder="Ingrese su Contraseña"/>
+                      <small class="disclamer">Las contraseñas deben incluir una letra mayuscula, un numero, y un caracter especial.</small>
                     </div>
 
                   </div>
@@ -58,9 +61,11 @@
                   </div>
                 </div>
 
-                <div class="mt-2 pt-2">
-                  <button class="btn btn-primary" type="submit" (click)='signUp();'>Registrarme</button>
+                <div class="mt-1 pt-2">
+                  <button class="btn btn-primary" type="submit" [disabled]="formSignup.invalid" (click)='signUp();'>Registrarme</button>
                 </div>
-
+                <small class="error" *ngIf="this.passwordsCorrect === false">Las contraseñas no coinciden.</small>
+                <small class="error" *ngIf="this.formatValid === false">El formato de la contraseña no es valido.</small>
+                <small class="success" *ngIf="this.statusOk === true">Registro realizado correctamente.</small>
               </form>
             </div>

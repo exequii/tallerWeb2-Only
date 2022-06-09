@@ -19,13 +19,13 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
     this.formSignIn = this.formBuilder.group({
-      email: new FormControl('',  Validators.required),
+      email: new FormControl('',  [Validators.required, Validators.email]),
       password: new FormControl('',  Validators.required),
     });
+    console.log(this.formSignIn)
   }
 
   signIn(){
-    console.log('ejecutando signup');
     this.httpClient.post('http://localhost:3000/signin', {
       'password': this.formSignIn.get('password').value,
       'email': this.formSignIn.get('email').value,
@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit{
   }
 
   recoverPass(){
-    console.log('ejecutando signup');
     this.httpClient.post('http://localhost:3000/signin', {
       'password': this.formSignIn.get('password').value,
       'email': this.formSignIn.get('email').value,

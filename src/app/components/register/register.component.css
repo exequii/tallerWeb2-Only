@@ -18,3 +18,22 @@ form {
     box-shadow: 2px 2px 15px 2px rgb(43, 43, 43);
     padding: 15px;
 }
+
+.error{
+  font-style: italic;
+  color: rgb(199, 109, 109);
+  font-size: 0.8em;
+  margin:0;
+}
+
+.disclamer{
+  font-style: italic;
+  color: grey;
+  font-size: 0.8em;
+}
+
+.success{
+  font-style: italic;
+  color: green;
+  font-size: 0.8em;
+}
