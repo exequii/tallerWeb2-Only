@@ -1,6 +1,6 @@
 <!-- Related items section-->
 <section class="py-5 bg-light">
-    <div class="container px-4 px-lg-5 mt-5">
+    <div *ngIf="apiStatus" class="container px-4 px-lg-5 mt-5">
         <h2 class="fw-bolder mb-4">Todos los productos</h2>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
@@ -51,5 +51,8 @@
             </tbody>
           </table>
         </div>
+    </div>
+    <div *ngIf="!apiStatus" class="notFound">
+        <p class="error">Ha ocurrido un error. Intente mas tarde.</p>
     </div>
 </section>

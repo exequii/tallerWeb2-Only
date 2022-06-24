@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
       password2: new FormControl('',  Validators.required),
       nombre: new FormControl('',  Validators.required),
       apellido: new FormControl('',  Validators.required),
-      telefono: new FormControl('',  [Validators.required, , Validators.pattern(/^[0-9]\d{6,10}$/)]),
+      telefono: new FormControl('', Validators.required),
     });
   }
 
@@ -45,9 +45,7 @@ export class RegisterComponent implements OnInit {
         'apellido': this.formSignup.get('apellido').value,
         'telefono': this.formSignup.get('telefono').value,
       }).subscribe(value => {
-        alert(JSON.stringify(value));
         var response = value;
-        console.log(response)
         if(response === "InvalidParameterException") this.formatValid = false
         if(response === "ok") this.statusOk = true
       });

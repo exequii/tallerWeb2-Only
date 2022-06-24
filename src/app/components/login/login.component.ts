@@ -30,7 +30,11 @@ export class LoginComponent implements OnInit{
       'password': this.formSignIn.get('password').value,
       'email': this.formSignIn.get('email').value,
     }).subscribe(value => {
-      alert(JSON.stringify(value));
+      //alert(JSON.stringify(value));
+      var response = value;
+      if(response === "UserNotConfirmedException"){
+        this.router.navigate(["confirm"])
+      }
     });
   }
 

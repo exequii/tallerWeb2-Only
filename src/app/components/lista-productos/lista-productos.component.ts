@@ -13,10 +13,12 @@ import { share, catchError } from 'rxjs/operators';
 export class ListaProductosComponent implements OnInit {
   products: Product[];
   carrito: Product[];
+  apiStatus: Boolean;
 
   constructor(protected router:Router, protected httpClient: HttpClient) { }
 
   ngOnInit(): void {
+    this.apiStatus=false;
     this.traerProductos()
     this.carrito=[];
   }
@@ -35,9 +37,11 @@ export class ListaProductosComponent implements OnInit {
     .pipe(share());
     res.subscribe(
       value=> {
+          this.apiStatus = true;
           this.products = value
               },
       error => {
+        this.apiStatus = false;
         console.log('Ocurrio un error');
       });
   }

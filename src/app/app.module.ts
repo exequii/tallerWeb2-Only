@@ -10,6 +10,7 @@ import { ProductoComponent } from './components/producto/producto.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './components/contact/contact.component';
+import { ConfirmarComponent } from './components/confirmar-cuenta/confirmar-cuenta.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ContactComponent } from './components/contact/contact.component';
     ListaProductosComponent,
     ProductoComponent,
     RegisterComponent,
-    ContactComponent
+    ContactComponent,
+    ConfirmarComponent
   ],
   imports: [
     BrowserModule,
