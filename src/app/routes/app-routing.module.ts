@@ -10,7 +10,7 @@ import { ConfirmarComponent } from '../components/confirmar-cuenta/confirmar-cue
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'producto', component: ProductoComponent},
+  { path: 'productos/:id', component: ProductoComponent},
   { path: 'productos', component: ListaProductosComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
