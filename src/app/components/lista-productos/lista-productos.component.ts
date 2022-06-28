@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { share, catchError } from 'rxjs/operators';
+import { ServicioAgregarAlCarritoService } from 'src/app/servicio-agregar-al-carrito.service';
 
 @Component({
   selector: 'app-lista-productos',
@@ -15,7 +16,7 @@ export class ListaProductosComponent implements OnInit {
   carrito: Product[];
   apiStatus: Boolean;
 
-  constructor(protected router:Router, protected httpClient: HttpClient) { }
+  constructor(protected router:Router, protected httpClient: HttpClient, private servicioCarrito : ServicioAgregarAlCarritoService) { }
 
   ngOnInit(): void {
     this.apiStatus=false;
@@ -24,6 +25,7 @@ export class ListaProductosComponent implements OnInit {
   }
   agregarReloj(products : Product){
     this.carrito.push(products);
+    this.servicioCarrito.disparadorDeCarrito.emit(products)
   }
   sacarReloj(codigo : String){
     this.carrito.forEach((element,index)=> {
