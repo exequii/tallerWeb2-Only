@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { LogearseService } from './login.service';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -13,16 +13,14 @@ export class LoginComponent implements OnInit{
   formSignIn: FormGroup;
   email: String;
 
-  constructor( protected router:Router, private formBuilder: FormBuilder, protected httpClient: HttpClient){
-
-  }
+  constructor( protected router:Router, private formBuilder: FormBuilder, protected httpClient: HttpClient,
+    private servicioLogin : LogearseService){}
 
   ngOnInit(): void {
     this.formSignIn = this.formBuilder.group({
       email: new FormControl('',  [Validators.required, Validators.email]),
       password: new FormControl('',  Validators.required),
     });
-    console.log(this.formSignIn)
   }
 
   signIn(){
@@ -33,7 +31,10 @@ export class LoginComponent implements OnInit{
       alert(JSON.stringify(value));
       var response = value;
       if(response === "UserNotConfirmedException") this.router.navigate(["confirm"])
-      if(response === "ok ") this.router.navigate([""])
+      if(response === "ok") {
+        this.servicioLogin.disparadorDeLogin.emit(this.formSignIn.get('email').value);
+        this.router.navigate([""])
+      }
     });
   }
 

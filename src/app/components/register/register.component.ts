@@ -47,7 +47,8 @@ export class RegisterComponent implements OnInit {
       }).subscribe(value => {
         var response = value;
         if(response === "InvalidParameterException") this.formatValid = false
-        if(response === "ok") this.statusOk = true
+        if(response === "ok") this.router.navigate([""])
+
       });
     }
   }
