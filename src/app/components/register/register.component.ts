@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
       this.passwordsCorrect = false;
     }else{
       this.passwordsCorrect = true;
-      this.httpClient.post('http://localhost:3000/signup', {
+      this.httpClient.post('http://localhost:3000/api/v1/user/signup', {
         'password': this.formSignup.get('password').value,
         'password2': this.formSignup.get('password2').value,
         'email': this.formSignup.get('email').value,

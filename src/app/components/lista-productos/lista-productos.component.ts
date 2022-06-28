@@ -33,7 +33,7 @@ export class ListaProductosComponent implements OnInit {
   }
   traerProductos(){
     let res: Observable<Product[]> =
-    this.httpClient.get<Product[]>('http://localhost:3000/products')
+    this.httpClient.get<Product[]>('http://localhost:3000/api/v1/products')
     .pipe(share());
     res.subscribe(
       value=> {

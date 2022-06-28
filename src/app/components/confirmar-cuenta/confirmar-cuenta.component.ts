@@ -28,11 +28,10 @@ export class ConfirmarComponent implements OnInit {
   }
 
   confirmAccount(){
-      this.httpClient.post('http://localhost:3000/confirm', {
+      this.httpClient.post('http://localhost:3000/api/v1/user/confirm', {
         'code': this.formConfirm.get('code').value,
         'email': this.formConfirm.get('email').value,
       }).subscribe(value => {
-        //alert(JSON.stringify(value));
         var response = value;
         if(response === "ok") this.router.navigate([""])
         if(response === "CodeMismatchException") this.statusCode= false;

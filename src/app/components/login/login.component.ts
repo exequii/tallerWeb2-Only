@@ -26,20 +26,21 @@ export class LoginComponent implements OnInit{
   }
 
   signIn(){
-    this.httpClient.post('http://localhost:3000/signin', {
+    this.httpClient.post('http://localhost:3000/api/v1/user/signin', {
       'password': this.formSignIn.get('password').value,
       'email': this.formSignIn.get('email').value,
     }).subscribe(value => {
-      //alert(JSON.stringify(value));
+      alert(JSON.stringify(value));
       var response = value;
-      if(response === "UserNotConfirmedException"){
-        this.router.navigate(["confirm"])
-      }
+      if(response === "UserNotConfirmedException") this.router.navigate(["confirm"])
+      if(response === "ok ") this.router.navigate([""])
     });
   }
 
+
+
   recoverPass(){
-    this.httpClient.post('http://localhost:3000/signin', {
+    this.httpClient.post('http://localhost:3000/api/v1/user/signin', {
       'password': this.formSignIn.get('password').value,
       'email': this.formSignIn.get('email').value,
     }).subscribe(value => {
