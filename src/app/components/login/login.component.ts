@@ -32,7 +32,10 @@ export class LoginComponent implements OnInit{
       var response = value;
       if(response === "UserNotConfirmedException") this.router.navigate(["confirm"])
       if(response === "ok") {
-        this.servicioLogin.disparadorDeLogin.emit(this.formSignIn.get('email').value);
+        this.servicioLogin.disparadorDeLogin.emit({
+          email: this.formSignIn.get('email').value,
+          password: this.formSignIn.get('password').value,
+        });
         this.router.navigate([""])
       }
     }, (error: HttpErrorResponse) => {

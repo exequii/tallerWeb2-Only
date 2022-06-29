@@ -1,7 +1,12 @@
 <!-- Related items section-->
 <section class="py-5 bg-light">
     <div *ngIf="apiStatus" class="container px-4 px-lg-5 mt-5">
+      <div class="d-flex justify-content-between">
         <h2 class="fw-bolder mb-4">Todos los productos</h2>
+        <div>
+          <a class="btn btn-primary " routerLink="/nuevo" routerLinkActive="active">Nuevo producto</a>
+        </div>
+      </div>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
             <div *ngFor="let product of products; index as i; first as isFirst" class="col mb-5">

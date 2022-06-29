@@ -16,13 +16,18 @@ export class AppComponent implements OnInit{
   constructor( protected router:Router, protected httpClient: HttpClient, private servicioCarrito : AgregarAlCarritoService,
   private servicioLogin : LogearseService){}
 
-  public products:Array<any> = []
+  public products:Array<any> = [];
   public loged: String = "";
+  public isAdmin: Boolean = false;
+
 
   ngOnInit(): void {
-      this.servicioLogin.disparadorDeLogin.subscribe(user => {
-        this.loged = user;
+      this.servicioLogin.disparadorDeLogin.subscribe(data => {
+        this.loged = data.email;
+        if(data.password === "Admin1234.") this.isAdmin = true;
       });
+      //this.servicioLogin.disparadorDeLogin.emit(this.loged);
+
       this.servicioCarrito.disparadorDeCarrito.subscribe(products => {
         this.products = products
         this.cantidadDePorductos = this.products.length;

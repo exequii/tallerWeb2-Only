@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { share, catchError } from 'rxjs/operators';
 import { AgregarAlCarritoService } from './agregar-al-carrito.service';
+import { LogearseService } from '../login/login.service';
 
 @Component({
   selector: 'app-lista-productos',
@@ -18,7 +19,7 @@ export class ListaProductosComponent implements OnInit {
   loged: String = "";
 
   constructor(protected router:Router, protected httpClient: HttpClient,
-     private servicioCarrito : AgregarAlCarritoService) { }
+     private servicioCarrito : AgregarAlCarritoService, private servicioLogin : LogearseService) { }
 
   ngOnInit(): void {
     this.apiStatus=false;
@@ -28,6 +29,9 @@ export class ListaProductosComponent implements OnInit {
   agregarReloj(products : Product){
     this.carrito.push(products);
     this.servicioCarrito.disparadorDeCarrito.emit(this.carrito)
+    this.servicioLogin.disparadorDeLogin.subscribe(data => {
+      console.log("hola")
+    });
   }
   sacarReloj(codigo : String){
     this.carrito.forEach((element,index)=> {
