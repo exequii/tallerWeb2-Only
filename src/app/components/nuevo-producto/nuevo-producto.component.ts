@@ -35,7 +35,7 @@ export class NewProductComponent implements OnInit{
   createProduct(){
     console.log(this.formNewProduct)
 
-    this.httpClient.post('http://localhost:3000/api/v1/product/newProduct', {
+    this.httpClient.post('http://localhost:3000/api/v1/products/newProduct', {
       'name': this.formNewProduct.get('name').value,
       'codigo': this.formNewProduct.get('codigo').value,
       'price': this.formNewProduct.get('price').value,

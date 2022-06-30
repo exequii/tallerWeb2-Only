@@ -33,11 +33,9 @@ export class ListaProductosComponent implements OnInit {
       console.log("hola")
     });
   }
-  sacarReloj(codigo : String){
-    this.carrito.forEach((element,index)=> {
-      if(element.codigo === codigo) this.carrito.splice(index,1)
-      else return
-    })
+  sacarReloj(products : Product){
+    var index = this.carrito.indexOf(products)
+    this.carrito.splice(index,1)
     this.servicioCarrito.disparadorDeCarrito.emit(this.carrito)
   }
   traerProductos(){
@@ -48,6 +46,7 @@ export class ListaProductosComponent implements OnInit {
       value=> {
           this.apiStatus = true;
           this.products = value
+          console.log(this.products)
               },
       error => {
         this.apiStatus = false;
