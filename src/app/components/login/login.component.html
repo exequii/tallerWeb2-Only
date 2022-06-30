@@ -16,6 +16,7 @@
       <p class="form-label">Contraseña</p>
       <input type="password" id="password" class="form-control" formControlName="password" placeholder="Ingrese su Contraseña"/>
       <p class="error" *ngIf="formSignIn.controls['password'].hasError('required')  && formSignIn.controls['password'].dirty">Este campo es requerido.</p>
+      <p class="error" *ngIf="errorMessage !== ''">{{errorMessage}}</p>
     </div>
 
     <!-- Submit button -->

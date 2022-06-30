@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './components/contact/contact.component';
 import { ConfirmarComponent } from './components/confirmar-cuenta/confirmar-cuenta.component';
+import { NewProductComponent } from './components/nuevo-producto/nuevo-producto.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ConfirmarComponent } from './components/confirmar-cuenta/confirmar-cuen
     ProductoComponent,
     RegisterComponent,
     ContactComponent,
-    ConfirmarComponent
+    ConfirmarComponent,
+    NewProductComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { share, catchError } from 'rxjs/operators';
-import { ServicioAgregarAlCarritoService } from 'src/app/servicio-agregar-al-carrito.service';
+import { AgregarAlCarritoService } from './agregar-al-carrito.service';
+import { LogearseService } from '../login/login.service';
 
 @Component({
   selector: 'app-lista-productos',
@@ -15,8 +16,10 @@ export class ListaProductosComponent implements OnInit {
   products: Product[];
   carrito: Product[];
   apiStatus: Boolean;
+  loged: String = "";
 
-  constructor(protected router:Router, protected httpClient: HttpClient, private servicioCarrito : ServicioAgregarAlCarritoService) { }
+  constructor(protected router:Router, protected httpClient: HttpClient,
+     private servicioCarrito : AgregarAlCarritoService, private servicioLogin : LogearseService) { }
 
   ngOnInit(): void {
     this.apiStatus=false;
@@ -25,13 +28,15 @@ export class ListaProductosComponent implements OnInit {
   }
   agregarReloj(products : Product){
     this.carrito.push(products);
-    this.servicioCarrito.disparadorDeCarrito.emit(products)
+    this.servicioCarrito.disparadorDeCarrito.emit(this.carrito)
+    this.servicioLogin.disparadorDeLogin.subscribe(data => {
+      console.log("hola")
+    });
   }
-  sacarReloj(codigo : String){
-    this.carrito.forEach((element,index)=> {
-      if(element.codigo === codigo) this.carrito.splice(index,1)
-      else return
-    })
+  sacarReloj(products : Product){
+    var index = this.carrito.indexOf(products)
+    this.carrito.splice(index,1)
+    this.servicioCarrito.disparadorDeCarrito.emit(this.carrito)
   }
   traerProductos(){
     let res: Observable<Product[]> =
@@ -41,6 +46,7 @@ export class ListaProductosComponent implements OnInit {
       value=> {
           this.apiStatus = true;
           this.products = value
+          console.log(this.products)
               },
       error => {
         this.apiStatus = false;

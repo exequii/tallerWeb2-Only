@@ -4,7 +4,7 @@ import {EventEmitter, Injectable, Output } from '@angular/core';
   providedIn: 'root'
 })
 
-export class ServicioAgregarAlCarritoService {
+export class AgregarAlCarritoService {
   @Output() disparadorDeCarrito : EventEmitter<any> = new EventEmitter();
   constructor() { }
 }

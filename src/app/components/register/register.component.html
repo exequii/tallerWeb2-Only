@@ -66,6 +66,8 @@
                 </div>
                 <small class="error" *ngIf="this.passwordsCorrect === false">Las contraseñas no coinciden.</small>
                 <small class="error" *ngIf="this.formatValid === false">El formato de la contraseña no es valido.</small>
+                <small class="error" *ngIf="errorMessage !== ''">{{errorMessage}}</small>
                 <small class="success" *ngIf="this.statusOk === true">Registro realizado correctamente.</small>
+
               </form>
             </div>
