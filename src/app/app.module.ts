@@ -25,10 +25,8 @@ import { PagoComponent } from './components/menu-pago/menu-pago.component';
     ContactComponent,
     ConfirmarComponent,
     NewProductComponent,
-<<<<<<< HEAD
-=======
     PagoComponent
->>>>>>> e4944c6ab49493fe3cdeb5cc10961802d9f62cac
+
   ],
   imports: [
     BrowserModule,
