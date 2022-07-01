@@ -26,6 +26,7 @@ import { PagoComponent } from './components/menu-pago/menu-pago.component';
     ConfirmarComponent,
     NewProductComponent,
     PagoComponent
+
   ],
   imports: [
     BrowserModule,

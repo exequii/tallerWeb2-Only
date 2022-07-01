@@ -38,11 +38,6 @@ export class ListaProductosComponent implements OnInit {
       this.router.navigate(["login"])
     }
   }
-  sacarReloj(products : Product){
-    var index = this.carrito.indexOf(products)
-    this.carrito.splice(index,1)
-    this.servicioCarrito.disparadorDeCarrito.emit(this.carrito)
-  }
   traerProductos(){
     let res: Observable<Product[]> =
     this.httpClient.get<Product[]>('http://localhost:3000/api/v1/products')
