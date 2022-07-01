@@ -26,8 +26,6 @@ export class AppComponent implements OnInit{
         this.loged = data.email;
         if(data.password === "Admin1234.") this.isAdmin = true;
       });
-      //this.servicioLogin.disparadorDeLogin.emit(this.loged);
-
       this.servicioCarrito.disparadorDeCarrito.subscribe(products => {
         this.products = products
         this.cantidadDePorductos = this.products.length;
@@ -36,7 +34,7 @@ export class AppComponent implements OnInit{
 
   cerrarSesion(){
     this.loged = "";
-    this.servicioLogin.disparadorDeLogin.emit("");
+    localStorage.removeItem('usuario');
     this.router.navigate([""]);
   }
 }

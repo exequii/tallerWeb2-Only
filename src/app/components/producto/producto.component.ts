@@ -15,11 +15,15 @@ export class ProductoComponent implements OnInit {
   statusApi: Boolean = true;
 
   constructor(protected router:Router, protected httpClient: HttpClient, private url: ActivatedRoute) {
-    this.id = this.url.snapshot.paramMap.get('id')
+    this.id = this.url.snapshot.paramMap.get('codigo')
   }
 
   ngOnInit(): void {
     this.traerProducto(this.id)
+  }
+
+  volver(){
+    this.router.navigate(["lista-productos"])
   }
 
   traerProducto(id){
