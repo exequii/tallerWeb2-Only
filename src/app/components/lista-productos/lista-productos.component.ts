@@ -17,21 +17,26 @@ export class ListaProductosComponent implements OnInit {
   carrito: Product[];
   apiStatus: Boolean;
   loged: String = "";
+  isAdmin: Boolean = false;
+
 
   constructor(protected router:Router, protected httpClient: HttpClient,
      private servicioCarrito : AgregarAlCarritoService, private servicioLogin : LogearseService) { }
 
   ngOnInit(): void {
+    this.loged = localStorage.getItem("usuario") || "";
+    if(this.loged === "ezequiel.sanson@hotmail.com") this.isAdmin = true;
     this.apiStatus=false;
     this.traerProductos()
     this.carrito=[];
   }
   agregarReloj(products : Product){
-    this.carrito.push(products);
-    this.servicioCarrito.disparadorDeCarrito.emit(this.carrito)
-    this.servicioLogin.disparadorDeLogin.subscribe(data => {
-      console.log("hola")
-    });
+    if(localStorage.getItem("usuario") !== "" && localStorage.getItem("usuario") !== undefined && localStorage.getItem("usuario") !== null){
+      this.carrito.push(products);
+      this.servicioCarrito.disparadorDeCarrito.emit(this.carrito)
+    }else{
+      this.router.navigate(["login"])
+    }
   }
   sacarReloj(products : Product){
     var index = this.carrito.indexOf(products)

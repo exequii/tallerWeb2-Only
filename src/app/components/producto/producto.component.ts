@@ -22,6 +22,10 @@ export class ProductoComponent implements OnInit {
     this.traerProducto(this.id)
   }
 
+  volver(){
+    this.router.navigate(["lista-productos"])
+  }
+
   traerProducto(id){
     let res: Observable<Product> =
     this.httpClient.get<Product>('http://localhost:3000/api/v1/products/'+id)

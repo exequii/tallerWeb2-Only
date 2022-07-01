@@ -11,7 +11,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 })
 export class LoginComponent implements OnInit{
   formSignIn: FormGroup;
-  email: String;
+  email: string;
   errorMessage: String = "";
 
   constructor( protected router:Router, private formBuilder: FormBuilder, protected httpClient: HttpClient,
@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit{
       var response = value;
       if(response === "UserNotConfirmedException") this.router.navigate(["confirm"])
       if(response === "ok") {
+        localStorage.setItem("usuario", this.formSignIn.get('email').value)
+
         this.servicioLogin.disparadorDeLogin.emit({
           email: this.formSignIn.get('email').value,
           password: this.formSignIn.get('password').value,
