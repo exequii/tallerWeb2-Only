@@ -21,7 +21,6 @@ const routes: Routes = [
   { path: 'nuevo', component: NewProductComponent},
   { path: 'purchase', component: PagoComponent},
   { path: '**', redirectTo: '', pathMatch: 'full'}
-
 ];
 
 @NgModule({

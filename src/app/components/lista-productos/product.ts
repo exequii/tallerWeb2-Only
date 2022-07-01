@@ -2,7 +2,7 @@ export interface Product {
   _id: String;
   name: String;
   codigo: String;
-  price: Number;
+  price: number;
   details: String;
   img: String;
   ofert: Boolean;

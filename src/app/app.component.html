@@ -26,12 +26,12 @@
 
 
 <div *ngIf="viewModal == true">
-  <div class="card w-50 mx-auto position-absolute top-50 start-50 translate-middle bg-secondary">
+  <div class="card w-50 mx-auto position-absolute top-50 start-50 translate-middle bg-dark">
     <!-- Product section-->
-    <div class="position-absolute top-0 end-0"><button (click)="cerrarPopUp()">x</button></div>
+    <div class="position-absolute top-0 end-0"><button class="btn btn-warning m-1 rounded-circle"(click)="cerrarPopUp()">x</button></div>
     <div class="card-body mx-auto">
       <div *ngIf="products.length !== 0;else templateName" >
-        <table class="table ">
+        <table class="table text-white">
           <thead>
             <tr>
               <th scope="col">Cantidad</th>
@@ -42,7 +42,7 @@
               <th scope="col"></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="w-100">
             <tr *ngFor="let product of products">
               <td>{{product.cantidad}}</td>
               <td>{{product.name}}</td>
@@ -51,13 +51,20 @@
               <td *ngIf="product.ofert">${{product.price - (product.price / product.desc)}}.-</td>
               <td *ngIf="product.ofert">SI</td>
               <td *ngIf="!product.ofert">NO</td>
-              <td><button class="btn btn-danger" (click)="sacarReloj(product)">X</button></td>
+              <td><button class="btn btn-danger" (click)="sacarReloj(product)"><i class="fa-solid fa-trash-can"></i></button></td>
+            </tr>
+            <tr class="precioTotal">
+              <td><p class="valor">Precion Total</p></td>
+              <td><p class="fw-bold valor">{{precioTotal}}</p></td>
             </tr>
           </tbody>
+          <div>
+          <button type="button" class="btn btn-success btn-lg btn-block mt-2" (click)="ConfirmarCompra()">Comprar</button>
+        </div>
         </table>
       </div>
       <ng-template #templateName>
-        <h2>No hay productos agregados</h2>
+        <h2 class="text-white display-5">No hay productos agregados</h2>
       </ng-template>
     </div>
   </div>

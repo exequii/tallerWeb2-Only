@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, JsonpClientBackend } from '@angular/common/http';
 import { AgregarAlCarritoService } from './components/lista-productos/agregar-al-carrito.service';
 import { LogearseService } from './components/login/login.service';
 import { Observable, share, Subject } from 'rxjs';
@@ -12,7 +12,7 @@ import { Product } from './components/lista-productos/product';
 })
 export class AppComponent implements OnInit{
   title = 'tallerWeb2-Only';
-  cantidadDePorductos;
+  cantidadDePorductos = 0;
   
   
   constructor( protected router:Router, protected httpClient: HttpClient, private servicioCarrito : AgregarAlCarritoService,
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit{
     public loged: String = "";
     public isAdmin: Boolean = false;
     public viewModal : Boolean = false;
+    public precioTotal : number =0; 
 
 
   ngOnInit(): void {
@@ -29,13 +30,10 @@ export class AppComponent implements OnInit{
         this.loged = data.email;
         if(data.password === "Admin1234.") this.isAdmin = true;
       });
-<<<<<<< HEAD
-
-=======
->>>>>>> e4944c6ab49493fe3cdeb5cc10961802d9f62cac
       this.servicioCarrito.disparadorDeCarrito.subscribe(products => {
         this.products = products
         this.cantidadDePorductos = this.products.length;
+        this.CalcularPrecioTotal(products);
       })
   }
 
@@ -53,9 +51,23 @@ export class AppComponent implements OnInit{
     this.viewModal =  false;
   }
 
+  CalcularPrecioTotal(products : Array<Product>){
+    this.precioTotal = 0;
+    products.forEach(product => {
+      this.precioTotal = this.precioTotal +  product.price;
+    })
+  }
+
   sacarReloj(product : Product){
     var index = this.products.indexOf(product)
     this.products.splice(index,1)
     this.cantidadDePorductos = this.products.length;
+    this.precioTotal = this.precioTotal - product.price;
+  }
+
+  ConfirmarCompra(){
+   let carrito = JSON.stringify(this.products);
+   localStorage.setItem("carrito",carrito);
+   this.router.navigate(['purchase']);
   }
 }
