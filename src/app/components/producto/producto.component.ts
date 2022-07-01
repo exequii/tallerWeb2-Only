@@ -15,7 +15,7 @@ export class ProductoComponent implements OnInit {
   statusApi: Boolean = true;
 
   constructor(protected router:Router, protected httpClient: HttpClient, private url: ActivatedRoute) {
-    this.id = this.url.snapshot.paramMap.get('id')
+    this.id = this.url.snapshot.paramMap.get('codigo')
   }
 
   ngOnInit(): void {
