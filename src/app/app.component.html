@@ -1,11 +1,6 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-  <img
-    width="40"
-    height="40"
-    alt="Only Design Logo"
-    src="../assets/logo.png"
-  />
+  <img width="40" height="40" alt="Only Design Logo" src="../assets/logo.png" />
   <h1>ONLY DESIGN</h1>
   <div class="spacer"></div>
   <div class="buttons">
@@ -13,15 +8,62 @@
     <a routerLink="/productos" routerLinkActive="active">Productos</a>
     <a routerLink="/contact" routerLinkActive="active">Contacto</a>
     <a *ngIf="loged !== ''" routerLink="/" routerLinkActive="active" style="padding-left: 20px;">{{loged}}</a>
-    <a *ngIf="loged !== ''" class="btn btn-primary text-white "><i class="fa-solid fa-cart-shopping"><span #cantidadDeProductos id="cantidadProductos"> {{cantidadDePorductos}}</span></i></a>
-    <button *ngIf="loged !== ''" class="btn btn-danger text-white" (click)="cerrarSesion()"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
-    <a *ngIf="loged === ''" routerLink="/login" routerLinkActive="active"><img src="../assets/login.png" alt="Login" width="30" height="30">Iniciar sesión</a>
+    <button (click)="abrirPopUp()" class="btn btn-primary text-white "><i class="fa-solid fa-cart-shopping"><span
+          #cantidadDeProductos id="cantidadProductos">
+          {{cantidadDePorductos}}</span></i></button>
+    <!-- <button *ngIf="loged !== ''" (click)="abrirPopUp()" class="btn btn-primary text-white "><i
+            class="fa-solid fa-cart-shopping"><span #cantidadDeProductos id="cantidadProductos">
+              {{cantidadDePorductos}}</span></i></button>-->
+    <button *ngIf="loged !== ''" class="btn btn-danger text-white" (click)="cerrarSesion()"><i
+        class="fa-solid fa-arrow-right-from-bracket"></i></button>
+    <a *ngIf="loged === ''" routerLink="/login" routerLinkActive="active"><img src="../assets/login.png" alt="Login"
+        width="30" height="30">Iniciar sesión</a>
   </div>
 </div>
 
+
 <router-outlet></router-outlet>
 
-    <!-- Footer -->
+
+<div *ngIf="viewModal == true">
+  <div class="card w-50 mx-auto position-absolute top-50 start-50 translate-middle bg-secondary">
+    <!-- Product section-->
+    <div class="position-absolute top-0 end-0"><button (click)="cerrarPopUp()">x</button></div>
+    <div class="card-body mx-auto">
+      <div *ngIf="products.length !== 0;else templateName" >
+        <table class="table ">
+          <thead>
+            <tr>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Codigo</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Oferta</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products">
+              <td>{{product.cantidad}}</td>
+              <td>{{product.name}}</td>
+              <td>{{product.codigo}}</td>
+              <td *ngIf="!product.ofert">${{product.price}}.-</td>
+              <td *ngIf="product.ofert">${{product.price - (product.price / product.desc)}}.-</td>
+              <td *ngIf="product.ofert">SI</td>
+              <td *ngIf="!product.ofert">NO</td>
+              <td><button class="btn btn-danger" (click)="sacarReloj(product)">X</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #templateName>
+        <h2>No hay productos agregados</h2>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
 <footer id="footer">
   <h3>Tecnicatura en Desarrollo Web</h3>
   <div class="flex">
@@ -41,4 +83,3 @@
     </button>
   </div>
 </footer>
-

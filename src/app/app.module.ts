@@ -23,7 +23,7 @@ import { NewProductComponent } from './components/nuevo-producto/nuevo-producto.
     RegisterComponent,
     ContactComponent,
     ConfirmarComponent,
-    NewProductComponent
+    NewProductComponent,
   ],
   imports: [
     BrowserModule,
