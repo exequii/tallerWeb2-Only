@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './components/contact/contact.component';
 import { ConfirmarComponent } from './components/confirmar-cuenta/confirmar-cuenta.component';
 import { NewProductComponent } from './components/nuevo-producto/nuevo-producto.component';
+import { PagoComponent } from './components/menu-pago/menu-pago.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,10 @@ import { NewProductComponent } from './components/nuevo-producto/nuevo-producto.
     ContactComponent,
     ConfirmarComponent,
     NewProductComponent,
+<<<<<<< HEAD
+=======
+    PagoComponent
+>>>>>>> e4944c6ab49493fe3cdeb5cc10961802d9f62cac
   ],
   imports: [
     BrowserModule,

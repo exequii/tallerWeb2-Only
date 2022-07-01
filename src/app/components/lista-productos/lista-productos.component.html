@@ -4,7 +4,7 @@
       <div class="d-flex justify-content-between">
         <h2 class="fw-bolder mb-4">Todos los productos</h2>
         <div>
-          <a class="btn btn-primary " routerLink="/nuevo" routerLinkActive="active">Nuevo producto</a>
+          <a *ngIf="isAdmin" class="btn btn-primary " routerLink="/nuevo" routerLinkActive="active">Nuevo producto</a>
         </div>
       </div>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">

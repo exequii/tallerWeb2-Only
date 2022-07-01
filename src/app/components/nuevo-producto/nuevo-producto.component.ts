@@ -45,7 +45,10 @@ export class NewProductComponent implements OnInit{
       'desc': this.formNewProduct.get('desc').value,
       'cantidad': this.formNewProduct.get('cantidad').value,
     }).subscribe(value => {
-      this.router.navigate(['/lista-productos']);
+      var response = value
+      if(response == "ok"){
+        this.router.navigate(['/lista-productos']);
+      }
     }, (error: HttpErrorResponse) => {
       this.errorMessage = error.error.message;
     });

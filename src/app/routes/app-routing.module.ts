@@ -8,16 +8,18 @@ import { RegisterComponent } from '../components/register/register.component';
 import { ContactComponent } from '../components/contact/contact.component';
 import { NewProductComponent } from '../components/nuevo-producto/nuevo-producto.component';
 import { ConfirmarComponent } from '../components/confirmar-cuenta/confirmar-cuenta.component';
+import { PagoComponent } from '../components/menu-pago/menu-pago.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'productos/:id', component: ProductoComponent},
+  { path: 'productos/:codigo', component: ProductoComponent},
   { path: 'productos', component: ListaProductosComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'confirm', component: ConfirmarComponent},
   { path: 'nuevo', component: NewProductComponent},
+  { path: 'purchase', component: PagoComponent},
   { path: '**', redirectTo: '', pathMatch: 'full'}
 
 ];
