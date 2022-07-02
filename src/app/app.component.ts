@@ -40,6 +40,9 @@ export class AppComponent implements OnInit{
   cerrarSesion(){
     this.loged = "";
     localStorage.removeItem('usuario');
+    localStorage.removeItem('carrito');
+    this.products = [];
+    this.cantidadDePorductos = 0;
     this.router.navigate([""]);
   }
 
@@ -68,7 +71,6 @@ export class AppComponent implements OnInit{
   ConfirmarCompra(){
    let carrito = JSON.stringify(this.products);
    let user = localStorage.getItem("usuario")
-  //  this.nuevaCompra(carrito, user)
    console.log(carrito,user)
    localStorage.setItem("carrito",carrito);
    this.viewModal =  false;
