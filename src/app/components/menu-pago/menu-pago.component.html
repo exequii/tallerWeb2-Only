@@ -37,6 +37,9 @@
       <div *ngIf="formPurchase.controls['año'].invalid && formPurchase.controls['año'].dirty" class="error">Este campo es requerido.</div>
     </div>
 
+    <div>
+      <span class="error" *ngIf="error !== ''">{{error}}</span>
+    </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary-outlined mt-3" [disabled]="formPurchase.invalid">Crear</button>
     </div>

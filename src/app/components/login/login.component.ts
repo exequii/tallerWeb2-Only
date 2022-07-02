@@ -48,11 +48,6 @@ export class LoginComponent implements OnInit{
 
 
   recoverPass(){
-    this.httpClient.post('http://localhost:3000/api/v1/user/recover', {
-      'password': this.formSignIn.get('password').value,
-      'email': this.formSignIn.get('email').value,
-    }).subscribe(value => {
-      alert(JSON.stringify(value));
-    });
+    alert("Todavia no esta desarrollada esta funcionalidad.")
   }
 }

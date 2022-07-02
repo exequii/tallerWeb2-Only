@@ -15,6 +15,7 @@ export class ConfirmarComponent implements OnInit {
   email: String;
   code: String;
   statusCode : Boolean;
+  error: String = "";
 
   constructor( protected router:Router, private formBuilder: FormBuilder, protected httpClient: HttpClient){
   }
@@ -35,6 +36,9 @@ export class ConfirmarComponent implements OnInit {
         var response = value;
         if(response === "ok") this.router.navigate([""])
         if(response === "CodeMismatchException") this.statusCode= false;
+      }, (error: HttpErrorResponse) => {
+          console.log(error.error.message)
+          this.error = "Ha ocurrido un error, intentelo mas tarde."
       });
     }
 }

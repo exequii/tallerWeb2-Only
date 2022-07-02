@@ -20,6 +20,7 @@
     </div>
 
     <!-- Submit button -->
+    <div *ngIf="error !== ''"><span class="error">{{error}}</span></div>
     <button type="submit" class="btn btn-outline-dark btn-block mb-4" [disabled]="formConfirm.invalid" >Confirmar Cuenta</button>
     <div *ngIf="!statusCode" class="error">El codigo o usuario ingresado no son validos.</div>
   </form>

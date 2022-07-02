@@ -13,16 +13,16 @@ import { Product } from './components/lista-productos/product';
 export class AppComponent implements OnInit{
   title = 'tallerWeb2-Only';
   cantidadDePorductos = 0;
-  
-  
+
+
   constructor( protected router:Router, protected httpClient: HttpClient, private servicioCarrito : AgregarAlCarritoService,
     private servicioLogin : LogearseService){}
-    
+
     public products:Array<any> = [];
     public loged: String = "";
     public isAdmin: Boolean = false;
     public viewModal : Boolean = false;
-    public precioTotal : number =0; 
+    public precioTotal : number =0;
 
 
   ngOnInit(): void {
@@ -68,30 +68,11 @@ export class AppComponent implements OnInit{
   ConfirmarCompra(){
    let carrito = JSON.stringify(this.products);
    let user = localStorage.getItem("usuario")
-   this.nuevaCompra(carrito, user)
+  //  this.nuevaCompra(carrito, user)
    console.log(carrito,user)
    localStorage.setItem("carrito",carrito);
+   this.viewModal =  false;
    this.router.navigate(['purchase']);
-  }
-
-  vaciarCarrito(){
-    this.products = []
-    this.cantidadDePorductos = 0
-    this.precioTotal = 0
-  }
-
-  nuevaCompra(carrito, usuario){
-    this.httpClient.post('http://localhost:3000/api/v1/compra/nuevaCompra', {
-      'carrito': carrito,
-      'usuario':usuario,
-    }).subscribe(value => {
-      var response = value
-      if(response == "ok"){
-        alert("Compra realizada");
-      }
-    }, (error: HttpErrorResponse) => {
-       console.log(error.error.message)
-    });
   }
 
 }

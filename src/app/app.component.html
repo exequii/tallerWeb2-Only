@@ -28,8 +28,7 @@
 <div *ngIf="viewModal == true">
   <div class="card w-50 mx-auto position-absolute top-50 start-50 translate-middle bg-dark">
     <!-- Product section-->
-    <div class="position-absolute top-0 end-0"><button class="btn btn-warning m-1 rounded-circle"(click)="cerrarPopUp()">x</button></div>
-    <div class="card-body mx-auto">
+    <div class="card-body mx-auto w-100">
       <div *ngIf="products.length !== 0;else templateName" >
         <table class="table text-white">
           <thead>
@@ -54,18 +53,21 @@
               <td><button class="btn btn-danger" (click)="sacarReloj(product)"><i class="fa-solid fa-trash-can"></i></button></td>
             </tr>
             <tr class="precioTotal">
-              <td><p class="valor">Precion Total</p></td>
-              <td><p class="fw-bold valor">{{precioTotal}}</p></td>
+              <td><p class="valor">Precio Total</p></td>
+              <td><p class="fw-bold valor">$ {{precioTotal}}.-</p></td>
             </tr>
           </tbody>
           <div>
           <button type="button" class="btn btn-success btn-lg btn-block mt-2" (click)="ConfirmarCompra()">Comprar</button>
-          <button type="button" class="btn btn-success btn-lg mt-2" (click)="vaciarCarrito()">Vaciar Carrito</button>
+          <button class="btn btn-danger btn-lg btn-block mt-2 ms-2"(click)="cerrarPopUp()">Cerrar</button>
         </div>
         </table>
       </div>
       <ng-template #templateName>
-        <h2 class="text-white display-5">No hay productos agregados</h2>
+        <h2 class="text-white display-5 text-center">No hay productos agregados</h2>
+        <div class="d-flex justify-content-center align-content-center">
+          <button class="btn btn-danger btn-lg btn-block mt-2 ms-2"(click)="cerrarPopUp()">Cerrar</button>
+        </div>
       </ng-template>
     </div>
   </div>

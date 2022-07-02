@@ -13,6 +13,7 @@ export class PagoComponent implements OnInit {
 
   formPurchase: FormGroup;
   email: String;
+  error: String = "";
 
   constructor( protected router:Router, private formBuilder: FormBuilder, protected httpClient: HttpClient){}
 
@@ -27,19 +28,19 @@ export class PagoComponent implements OnInit {
   }
 
   confirmPurchase(){
-      this.httpClient.post('http://localhost:3000/api/v1/products/purchase', {
-        'numero': this.formPurchase.get('numero').value,
-        'cvv': this.formPurchase.get('cvv').value,
-        'mes': this.formPurchase.get('mes').value,
-        'año': this.formPurchase.get('año').value,
-        'titular': this.formPurchase.get('titular').value,
-        'email': this.email,
+      this.httpClient.post('http://localhost:3000/api/v1/compra/nuevaCompra', {
+        'carrito': localStorage.getItem('carrito'),
+        'usuario':localStorage.getItem('usuario'),
       }).subscribe(value => {
-        var response = value;
-        if(response === "ok") this.router.navigate([""])
+        var response = value
+        if(response == "ok"){
+          alert("Compra realizada");
+          this.router.navigate([""]);
+        }
       }, (error: HttpErrorResponse) => {
-        console.log(error)
-      });;
+         console.log(error.error.message)
+         this.error = "Ha ocurrido un error, intentelo mas tarde."
+      });
     }
 }
 
