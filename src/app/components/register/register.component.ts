@@ -40,15 +40,15 @@ export class RegisterComponent implements OnInit {
       this.passwordsCorrect = true;
       this.httpClient.post('http://localhost:3000/api/v1/user/signup', {
         'password': this.formSignup.get('password').value,
-        'password2': this.formSignup.get('password2').value,
         'email': this.formSignup.get('email').value,
         'nombre': this.formSignup.get('nombre').value,
         'apellido': this.formSignup.get('apellido').value,
         'telefono': this.formSignup.get('telefono').value,
       }).subscribe(value => {
+        console.log(value)
         var response = value;
         if(response === "InvalidParameterException") this.formatValid = false
-        if(response === "ok") this.router.navigate([""])
+        if(response === "ok") this.router.navigate(["confirm"])
       }, (error: HttpErrorResponse) => {
         this.errorMessage = error.error.message;
       });
